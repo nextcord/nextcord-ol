@@ -2,7 +2,8 @@ from os import makedirs
 from pathlib import Path
 from libcst import parse_module
 
-from transformers import StatementTransformer
+# from transformers import StatementTransformer
+# from transformers import ImportTransformer
 
 
 target = "nextcord_submodule/nextcord"
@@ -10,22 +11,28 @@ write = "nextcord_test"
 
 
 def parse_file(path: Path) -> None:
-    print(path)
     cst = parse_module(path.read_text())
-    cst = cst.visit(StatementTransformer())
+    # cst = cst.visit(StatementTransformer())
 
-    path = Path(str(path).replace(target, write))
-    makedirs(Path(*path.parts[:-1]), exist_ok=True)
-    with open(path, "w") as f:
-        f.write(cst.code)
+    path.write_text(cst.code)
 
 
 def parse_directory(directory: Path) -> None:
+    output = ""
+
     for file in directory.glob("**/*.py"):
-        parse_file(file)
+        output += file.read_text() + "\n"
+
+    path = Path("nextcord_test/onelined.py")
+
+    path.write_text(output)
+
+    parse_file(path)
 
 
 def main() -> None:
+    makedirs(write, exist_ok=True)
+
     parse_directory(Path(target))
 
 

@@ -1,5 +1,7 @@
 # nextcord-ol
 
+:warning:Should not be used - just a joke:warning:
+
 Make nextcord one line
 
 ~~for NCv4~~

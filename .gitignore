@@ -1,0 +1,27 @@
+*.json
+*.py[cod]
+*.log
+*.egg-info
+venv/
+.venv/
+docs/_build
+docs/crowdin.py
+*.buildinfo
+*.mp3
+*.m4a
+*.wav
+*.png
+*.jpg
+*.flac
+*.mo
+pyproject.toml
+dist/
+.history/
+.idea/
+.DS_Store
+.python-version
+__pycache__
+
+# Exception for images in assets folder
+!assets/*
+build/

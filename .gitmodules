@@ -1,0 +1,3 @@
+[submodule "nextcord_submodule"]
+	path = nextcord_submodule
+	url = https://github.com/nextcord/nextcord

@@ -14,7 +14,6 @@ docs/crowdin.py
 *.jpg
 *.flac
 *.mo
-pyproject.toml
 dist/
 .history/
 .idea/
@@ -25,3 +24,4 @@ __pycache__
 # Exception for images in assets folder
 !assets/*
 build/
+nextcord_test/

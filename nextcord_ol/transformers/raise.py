@@ -19,19 +19,11 @@ class RaiseTransformer(CSTTransformer):
         """dict of raises to edited expression"""
 
     THROW = parse_expression("(_ for _ in ()).throw")
+    EMPTY = parse_expression("sys.exc_info()[1]")
 
     def visit_Raise(self, node: Raise) -> bool:
-        if node.exc is not None:
-            self.edited_raises[node] = Expr(
-                value=Call(
-                    func=self.THROW,
-                    args=[
-                        Arg(node.exc),
-                    ],
-                )
-            )
-
-        # TODO: empty raises, sys_exc_info helps with that
+        exc = self.THROW if node.exc else self.EMPTY
+        self.edited_raises[node] = Expr(value=Call(func=self.THROW, args=[Arg(exc)]))
 
         return False  # no children for raising
 

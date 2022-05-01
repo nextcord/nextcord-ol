@@ -34,6 +34,8 @@ if TYPE_CHECKING:
 
 
 class ImportTransformer(CSTTransformer):
+    """Modifies imports to be all absolute, deletes relative imports"""
+
     def __init__(self, path: Path, modules: list[str]) -> None:
         self.path = path
         """path to current file"""

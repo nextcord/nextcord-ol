@@ -1,5 +1,5 @@
-from .statement import StatementTransformer
+from . import RaiseTransformer
 from .imports import ImportTransformer
 
 
-__all__ = ("StatementTransformer", "ImportTransformer")
+__all__ = ("RaiseTransformer", "ImportTransformer")

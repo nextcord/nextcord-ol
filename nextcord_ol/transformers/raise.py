@@ -11,7 +11,9 @@ from libcst import (
 )
 
 
-class StatementTransformer(CSTTransformer):
+class RaiseTransformer(CSTTransformer):
+    """Edits raise statements to expressions (lambda-friendly)"""
+
     def __init__(self) -> None:
         self.edited_raises: dict[Raise, Expr] = {}
         """dict of raises to edited expression"""

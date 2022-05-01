@@ -20,6 +20,7 @@ from libcst import (
     RemoveFromParent,
     Return,
     SimpleStatementLine,
+    Subscript,
 )
 from libcst.helpers import get_full_name_for_node_or_raise as get_full_name
 from nextcord_ol.utils import Type, highest
@@ -129,6 +130,9 @@ class ImportTransformer(CSTTransformer):
 
     def leave_Decorator(self, original: Decorator, updated: Decorator) -> Decorator:
         return self.edit(original, updated, attr="decorator")
+
+    def leave_Subscript(self, original: Subscript, updated: Subscript) -> Subscript:
+        return self.edit(original, updated, attr="value")
 
     def edit(self, original: NODE, updated: NODE, *, attr: str) -> NODE:
         if isinstance(getattr(original, attr), Name):

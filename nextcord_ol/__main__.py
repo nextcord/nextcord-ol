@@ -6,12 +6,13 @@ from pathlib import Path
 from libcst import parse_module
 
 from .config import modules, target, write
-from .transformers import ImportTransformer
+from .transformers import ImportTransformer, TypingTransformer
 
 
 def parse_file(path: Path) -> None:
     cst = parse_module(path.read_text())
     cst = cst.visit(ImportTransformer(path=path, modules=modules))
+    cst = cst.visit(TypingTransformer())
 
     path = Path("/".join(path.parts).replace(target, write))
     makedirs("/".join(path.parts[:-1]), exist_ok=True)

@@ -31,4 +31,3 @@ def recursive_modules(module: Path) -> list[str]:
 
 
 modules = recursive_modules(tpath)
-print(modules)

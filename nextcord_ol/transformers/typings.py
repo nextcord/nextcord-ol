@@ -38,6 +38,7 @@ class TypingTransformer(CSTTransformer):
 
     def leave_If(self, original: If, updated: If) -> If | RemovalSentinel:
         if original in self.type_checking_ifs:
+            self.type_checking_ifs.discard(original)
             return RemoveFromParent()
 
         return updated
@@ -59,6 +60,7 @@ class TypingTransformer(CSTTransformer):
         self, original: FunctionDef, updated: FunctionDef
     ) -> FunctionDef | RemovalSentinel:
         if original in self.overload_funcs:
+            self.overload_funcs.discard(original)
             return RemoveFromParent()
 
         return updated
@@ -78,7 +80,6 @@ class TypingTransformer(CSTTransformer):
                 isinstance(value.func, Attribute) and value.func.attr.value == "TypeVar"
             )
         ):
-            print("AAAAAAAAAAAAAAAAAAAAAAAA")
             self.typevar_assigns.add(node)
 
         return False
@@ -95,6 +96,7 @@ class TypingTransformer(CSTTransformer):
 
     def leave_assignment(self, original: AS, updated: AS) -> AS | RemovalSentinel:
         if original in self.typevar_assigns:
+            self.typevar_assigns.discard(original)
             return RemoveFromParent()
 
         return updated

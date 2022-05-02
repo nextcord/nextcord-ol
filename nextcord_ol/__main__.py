@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MIT
+
 from os import makedirs
 from pathlib import Path
 

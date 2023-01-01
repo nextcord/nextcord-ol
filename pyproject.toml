@@ -12,7 +12,7 @@ nextcord = "^2.0.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
-isort = "^5.10.1"
+isort = "^5.11.4"
 libcst = "^0.4.5"
 
 [build-system]
